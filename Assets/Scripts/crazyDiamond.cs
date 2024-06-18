@@ -21,13 +21,22 @@ public class crazyDiamond : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
+    private void FixedUpdate()
+    {
         _Rigidbody2D.position = new Vector2(_Rigidbody2D.position.x, _Rigidbody2D.position.y + velocity * Time.deltaTime);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "KIRA") 
+        if (collision.gameObject.tag == "KIRA")
         {
-            _animator.SetBool("Explosion",true);
+            _animator.SetBool("Explosion", true);
+            Destroy(this.gameObject, 1);
+        }
+        if (collision.gameObject.tag == "Pared")
+        {
+            _animator.SetBool("Explosion", true);
             Destroy(this.gameObject, 1);
         }
     }
